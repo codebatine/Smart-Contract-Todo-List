@@ -9,7 +9,8 @@ export const AddTodo = ({ populateTodos }) => {
     initializeBlockchain();
   }, []);
 
-  const handleCreateTodo = async () => {
+  const handleCreateTodo = async (e) => {
+    e.preventDefault();
     try {
       await createTodo(todo.task);
       populateTodos();
@@ -25,10 +26,7 @@ export const AddTodo = ({ populateTodos }) => {
   return (
     <form
       className="add-todo-form"
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleCreateTodo();
-      }}
+      onSubmit={handleCreateTodo}
     >
       <input
         type="text"

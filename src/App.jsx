@@ -1,6 +1,5 @@
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
-import { useCallback, useEffect } from 'react';
-import { useState } from 'react';
 import { Todos } from './components/Todos.jsx';
 import { AddTodo } from './components/AddTodo.jsx';
 import Nav from './components/Nav.jsx';
@@ -38,20 +37,22 @@ function App() {
 
   useEffect(() => {
     initializeBlockchain();
-    if (wallet) {
-      getTodos().then(setTodos);
-    }
-  }, [wallet]);
+    fetchTodos();
+  }, []);
 
   const formatBalance = (rawBalance) => {
     const balance = (parseInt(rawBalance) / 1000000000000000000).toFixed(5);
     return balance;
   };
 
+  const fetchTodos = () => {
+    getTodos().then(setTodos);
+  };
+
   const handleClick = async (id) => {
     try {
       await toggleTodo(id);
-      getTodos().then(setTodos);
+      fetchTodos();
     } catch (error) {
       console.error(`Failed to mark todo as done: ${error}`);
     }
@@ -60,7 +61,7 @@ function App() {
   const handleDeleteTodo = async (id) => {
     try {
       await deleteTodo(id);
-      getTodos().then(setTodos);
+      fetchTodos();
     } catch (error) {
       console.error(`Failed to delete todo: ${error}`);
     }
@@ -85,22 +86,21 @@ function App() {
           </div>
         )}
   
-  {writeContract && (
-  <AddTodo
-    writeContract={writeContract}
-    populateTodos={() => getTodos().then(setTodos)}
-  />
-)}
-  
-  {writeContract && (
-  <Todos
-  todos={todos}
-  writeContract={writeContract}
-  populateTodos={() => getTodos().then(setTodos)}
-  toggleCompletion={handleClick}
-  deleteTodo={handleDeleteTodo}
-/>
-)}
+        {writeContract && (
+          <>
+            <AddTodo
+              writeContract={writeContract}
+              populateTodos={fetchTodos}
+            />
+            <Todos
+              todos={todos}
+              writeContract={writeContract}
+              populateTodos={fetchTodos}
+              toggleCompletion={handleClick}
+              deleteTodo={handleDeleteTodo}
+            />
+          </>
+        )}
       </div>
       <Footer />
     </div>

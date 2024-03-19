@@ -1,0 +1,263 @@
+:root {
+  --primary-color: #800080;
+  --secondary-color: #0000FF;
+  --padding-standard: 0.8rem;
+  --border-radius-standard: 10px;
+  --button-padding: 10px 20px;
+  --primary-color-dark: #300030;
+  --secondary-color-dark: #000033;
+  --background-color-dark: #000000;
+  --text-color-dark: #ffffff;
+}
+
+#root, .degen-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: "Mulish", sans-serif;
+  font-size: 1rem;
+  background-image: linear-gradient(62deg, var(--primary-color) 13%, rgba(255, 255, 255, 0.5) 4%),
+                    linear-gradient(44deg, var(--secondary-color) 39%, rgba(242, 242, 242, 0.5) 18%),
+                    linear-gradient(118deg, var(--primary-color) 40%, rgba(247, 247, 247, 0.5) 54%),
+                    linear-gradient(58deg, var(--secondary-color) 83%, rgba(249, 249, 249, 0.5) 23%);
+  background-blend-mode: normal, lighten, multiply, hard-light;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+body.dark-mode {
+  background-image: linear-gradient(62deg, var(--primary-color) 13%, rgba(0, 0, 0, 0.5) 4%),
+                    linear-gradient(44deg, var(--secondary-color) 39%, rgba(0, 0, 0, 0.5) 18%),
+                    linear-gradient(118deg, var(--primary-color) 40%, rgba(0, 0, 0, 0.5) 54%),
+                    linear-gradient(58deg, var(--secondary-color) 83%, rgba(0, 0, 0, 0.5) 23%);
+}
+
+.dark-mode {
+  --primary-color: var(--primary-color-dark);
+  --secondary-color: var(--secondary-color-dark);
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.toggle-dark-mode {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1.5rem;
+  outline: none;
+}
+
+.toggle-dark-mode.dark {
+  color: var(--text-color-dark);
+}
+
+.toggle-dark-mode:hover,
+.toggle-dark-mode:focus,
+.toggle-dark-mode:active {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  padding: 10px;
+  z-index: 1;
+}
+
+.navbar a {
+  color: var(--text-color-light);
+  position: relative;
+  z-index: 0;
+  margin: 0 10px
+}
+
+.navbar a:hover {
+  color: #b3b3b3;
+}
+
+.navbar a:before, .navbar a:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  border: 4px solid #0277bd;
+  transform: translate(-50%, -50%) scale(0.8);
+  border-radius: 50%;
+  background: transparent;
+  content: "";
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: -1;
+}
+
+.navbar a:hover:before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.navbar a:hover:after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.navbar button {
+  background: none;
+  border: none;
+  color: var(--text-color-dark);
+  cursor: pointer;
+}
+
+.dark-mode .navbar {
+  background-color: var(--primary-color-dark);
+  color: var(--text-color-dark);
+}
+
+.app-container {
+  margin: 0 auto;
+}
+
+.spinning-D {
+  font-size: 15rem;
+  animation: spin 5s infinite linear;
+  transform-origin: center center;
+
+}
+
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(1turn);
+  }
+}
+
+.degen-container {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: var(--border-radius-standard);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.degen-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 40px 0 20px 0;
+}
+
+.label {
+  font-size: 1.2em;
+}
+
+input, button, .checkbox {
+  padding: var(--padding-standard);
+  border: none;
+  border-radius: var(--border-radius-standard);
+  outline: none;
+  background-color:rgb(182, 182, 182);
+  color: black;
+  margin-right: 1rem;
+}
+
+button {
+  color: white;
+  padding: var(--button-padding);
+  cursor: pointer;
+  margin-top: 20px;
+  transition: color 0.12s ease;
+  background-color: var(--primary-color-dark);
+  color: var(--text-color-dark);
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+.add-degen-form button:hover {
+  background-color: #000099;
+}
+
+.remove-button {
+  margin-left: 10px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.wallet-info div, .wallet-info p {
+  font-size: 1em;
+  margin: 10px 0;
+}
+
+.wallet-info span {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: black;
+}
+
+.add-degen-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.add-degen-form input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.add-degen-form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-degen-form button {
+  padding: var(--button-padding);
+  border-radius: 5px;
+  border: none;
+  background-color: var(--secondary-color);
+  color: white;
+  cursor: pointer;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}

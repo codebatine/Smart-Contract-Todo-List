@@ -24,7 +24,9 @@ export const Todos = ({ todos, writeContract, populateTodos }) => {
             <span className="label">Task:</span> {t.task}
           </div>
           <div>
-            <span className="label">Done?</span> {t.completed ? 'Yes' : 'No'}
+            <span className="label">Done?</span>
+            <span className={t.completed ? 'completed-task' : ''}>{t.task}</span>
+
           </div>
           <button
             className="toggle-completion-button"

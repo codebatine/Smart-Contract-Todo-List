@@ -16,17 +16,13 @@ export const Todos = ({ todos, writeContract, populateTodos }) => {
   return (
     <div>
       {todos.map((t) => (
-        <div
-          className="degen-list"
-          key={t.id}
-        >
+        <div className="degen-list" key={t.id}>
           <div>
-            <span className="label">Task:</span> {t.task}
+            <span className="label">Task:</span> 
+            <span className={t.completed ? 'completed-task' : ''}>{t.task}</span>
           </div>
           <div>
-            <span className="label">Done?</span>
-            <span className={t.completed ? 'completed-task' : ''}>{t.task}</span>
-
+            <span className="label">Done?</span> {t.completed ? 'Yes' : 'No'}
           </div>
           <button
             className="toggle-completion-button"

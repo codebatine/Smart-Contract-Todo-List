@@ -72,8 +72,7 @@ function App() {
     let temp = [];
     for (let i = 0; i < indexes.length; i++) {
       const todo = await readContract['todos'](indexes[i]);
-  
-      if (todo.id > 0) temp.push(todo);
+      if (todo[0] > 0) temp.push({ id: Number(todo[0]), task: todo[1], completed: todo[2] });
     }
     setTodos(temp);
   }, [readContract]);

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 export const Todos = ({ todos, writeContract, populateTodos }) => {
-  console.log(writeContract.interface.fragments);
   const deleteTodo = async (id) => {
     const result = await writeContract.deleteTodo(id);
     await result.wait();
@@ -55,7 +54,7 @@ Todos.propTypes = {
   ).isRequired,
   writeContract: PropTypes.shape({
     deleteTodo: PropTypes.func,
-    toggleCompletion: PropTypes.func,
+    completeTodo: PropTypes.func,
   }).isRequired,
   populateTodos: PropTypes.func.isRequired,
 };

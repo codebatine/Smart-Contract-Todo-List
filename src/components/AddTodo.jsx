@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
+import { createTodo, initializeBlockchain } from '../blockchainService.js';
 
-export const AddTodo = ({ writeContract, populateTodos }) => {
+export const AddTodo = ({ populateTodos }) => {
   const [todo, setTodo] = useState({ task: "" });
 
-  const createTodo = async () => {
+  useEffect(() => {
+    initializeBlockchain();
+  }, []);
+
+  const handleCreateTodo = async () => {
     try {
-      const result = await writeContract.createTodo(todo.task);
-      await result.wait();
-
-      console.log(result);
-
+      await createTodo(todo.task);
       populateTodos();
     } catch (error) {
       console.log(error);
@@ -26,7 +27,7 @@ export const AddTodo = ({ writeContract, populateTodos }) => {
       className="add-todo-form"
       onSubmit={(e) => {
         e.preventDefault();
-        createTodo();
+        handleCreateTodo();
       }}
     >
       <input
@@ -42,8 +43,5 @@ export const AddTodo = ({ writeContract, populateTodos }) => {
 };
 
 AddTodo.propTypes = {
-  writeContract: PropTypes.shape({
-    createTodo: PropTypes.func,
-  }).isRequired,
   populateTodos: PropTypes.func.isRequired,
 };

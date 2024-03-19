@@ -1,27 +1,17 @@
-import { ethers } from 'ethers';
 import './App.css';
 import { useCallback, useEffect } from 'react';
 import { useState } from 'react';
-import { abi, contractAddress } from './config.js';
 import { Todos } from './components/Todos.jsx';
 import { AddTodo } from './components/AddTodo.jsx';
 import Nav from './components/Nav.jsx';
 import Footer from './components/Footer.jsx';
-
-
-if (window.ethereum) {
-  window.provider = new ethers.BrowserProvider(window.ethereum);
-} else {
-  console.error('Get a web3 wallet, ok?');
-}
+import { initializeBlockchain, getTodos, toggleTodo, deleteTodo, createTodo, writeContract } from './blockchainService.js';
 
 function App() {
   const [wallet, setWallet] = useState({
     accounts: [],
     balance: '',
   });
-  const [readContract, setReadContract] = useState();
-  const [writeContract, setWriteContract] = useState();
   const [todos, setTodos] = useState([]);
 
   const updateWallet = useCallback(async (accounts) => {
@@ -36,21 +26,6 @@ function App() {
 
   useEffect(() => {
     const getProvider = async () => {
-      const todoReadContract = new ethers.Contract(
-        contractAddress,
-        abi,
-        window.provider,
-      );
-      setReadContract(todoReadContract);
-
-      const signer = await window.provider.getSigner();
-      const todoWriteContract = new ethers.Contract(
-        contractAddress,
-        abi,
-        signer,
-      );
-      setWriteContract(todoWriteContract);
-
       let accounts = await window.ethereum.request({
         method: 'eth_requestAccounts',
       });
@@ -61,27 +36,12 @@ function App() {
     getProvider();
   }, [updateWallet]);
 
-  const populateTodos = useCallback(async () => {
-    const indexes = await readContract['getTodoIds']();
-  
-    if (!indexes || indexes.length === 0) {
-      console.log('No indexes returned from getTodoIds');
-      return;
-    }
-  
-    let temp = [];
-    for (let i = 0; i < indexes.length; i++) {
-      const todo = await readContract['todos'](indexes[i]);
-      if (todo[0] > 0) temp.push({ id: Number(todo[0]), task: todo[1], completed: todo[2] });
-    }
-    setTodos(temp);
-  }, [readContract]);
-
   useEffect(() => {
-    if (wallet && readContract) {
-      populateTodos();
+    initializeBlockchain();
+    if (wallet) {
+      getTodos().then(setTodos);
     }
-  }, [wallet, readContract, populateTodos]);
+  }, [wallet]);
 
   const formatBalance = (rawBalance) => {
     const balance = (parseInt(rawBalance) / 1000000000000000000).toFixed(5);
@@ -90,19 +50,17 @@ function App() {
 
   const handleClick = async (id) => {
     try {
-      const tx = await writeContract.toggleDone(id);
-      await tx.wait();
-      populateTodos();
+      await toggleTodo(id);
+      getTodos().then(setTodos);
     } catch (error) {
       console.error(`Failed to mark todo as done: ${error}`);
     }
   };
 
-  const deleteTodo = async (id) => {
+  const handleDeleteTodo = async (id) => {
     try {
-      const tx = await writeContract.deleteTodo(id);
-      await tx.wait();
-      populateTodos();
+      await deleteTodo(id);
+      getTodos().then(setTodos);
     } catch (error) {
       console.error(`Failed to delete todo: ${error}`);
     }
@@ -130,7 +88,7 @@ function App() {
   {writeContract && (
   <AddTodo
     writeContract={writeContract}
-    populateTodos={populateTodos}
+    populateTodos={() => getTodos().then(setTodos)}
   />
 )}
   
@@ -138,9 +96,9 @@ function App() {
   <Todos
   todos={todos}
   writeContract={writeContract}
-  populateTodos={populateTodos}
+  populateTodos={() => getTodos().then(setTodos)}
   toggleCompletion={handleClick}
-  deleteTodo={deleteTodo}
+  deleteTodo={handleDeleteTodo}
 />
 )}
       </div>

@@ -12,7 +12,7 @@ import Footer from './components/Footer.jsx';
 if (window.ethereum) {
   window.provider = new ethers.BrowserProvider(window.ethereum);
 } else {
-  console.error('Error: Web3 wallet not found. Please install a Web3 wallet.');
+  console.error('Get a web3 wallet, ok?');
 }
 
 function App() {
@@ -113,7 +113,7 @@ function App() {
       <Nav />
       <div className="spinning-D">todo</div>
       <div className="degen-container">
-        <h1>Todo Contract</h1>
+        <h1>Degen do good.</h1>
         {wallet?.accounts.length > 0 && (
           <div className="wallet-info">
             <div>

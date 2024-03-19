@@ -18,7 +18,7 @@ export const Todos = ({ todos, writeContract, populateTodos }) => {
       {todos.map((t) => (
         <div className="degen-list" key={t.id}>
           <div>
-            <span className="label">Task:</span> 
+            <span className="label">Task: </span> 
             <span className={t.completed ? 'completed-task' : ''}>{t.task}</span>
           </div>
           <div>

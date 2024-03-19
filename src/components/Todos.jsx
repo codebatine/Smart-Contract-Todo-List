@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 export const Todos = ({ todos, writeContract, populateTodos }) => {
+  console.log(writeContract.interface.fragments);
   const deleteTodo = async (id) => {
     const result = await writeContract.deleteTodo(id);
     await result.wait();
@@ -8,7 +9,7 @@ export const Todos = ({ todos, writeContract, populateTodos }) => {
   };
 
   const toggleCompletion = async (id) => {
-    const result = await writeContract.toggleCompletion(id);
+    const result = await writeContract.completeTodo(id);
     await result.wait();
     populateTodos();
   };
@@ -17,7 +18,7 @@ export const Todos = ({ todos, writeContract, populateTodos }) => {
     <div>
       {todos.map((t) => (
         <div
-          className="todo-list"
+          className="degen-list"
           key={t.id}
         >
           <div>

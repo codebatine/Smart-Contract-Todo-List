@@ -113,7 +113,7 @@ function App() {
     <div className="app-container">
       <Nav />
       <div className="spinning-D">todo</div>
-      <div className="todo-container">
+      <div className="degen-container">
         <h1>Todo Contract</h1>
         {wallet?.accounts.length > 0 && (
           <div className="wallet-info">
@@ -137,12 +137,12 @@ function App() {
   
   {writeContract && (
   <Todos
-    todos={todos}
-    writeContract={writeContract}
-    populateTodos={populateTodos}
-    handleClick={handleClick}
-    deleteTodo={deleteTodo}
-  />
+  todos={todos}
+  writeContract={writeContract}
+  populateTodos={populateTodos}
+  toggleCompletion={handleClick}
+  deleteTodo={deleteTodo}
+/>
 )}
       </div>
       <Footer />

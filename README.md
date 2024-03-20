@@ -76,4 +76,5 @@ Skapa en ny todo-lista. Men denna gång behöver ni använda den blockchain som 
 
 ## Screenshot :camera_flash:
 
-![Degen-To-Do-List Screenshot](.jpg)
+![Degen-To-Do-List Light-Mode Screenshot](./img/degen-to-do-list-light-theme-screenshot.jpg)
+![Degen-To-Do-List Dark-Mode Screenshot](./img/degen-to-do-list-dark-theme-screenshot.jpg)

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import './App.css';
+import '../content/css/App.min.css';
 import { Todos } from './components/Todos.jsx';
 import { AddTodo } from './components/AddTodo.jsx';
 import Nav from './components/Nav.jsx';

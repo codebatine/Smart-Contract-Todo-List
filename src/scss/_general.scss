@@ -1,0 +1,19 @@
+#root, .degen-container {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Mulish", sans-serif;
+  font-size: 1rem;
+  background-image: linear-gradient(62deg, var(--primary-color) 13%, rgba(255, 255, 255, 0.5) 4%),
+                    linear-gradient(44deg, var(--secondary-color) 39%, rgba(242, 242, 242, 0.5) 18%),
+                    linear-gradient(118deg, var(--primary-color) 40%, rgba(247, 247, 247, 0.5) 54%),
+                    linear-gradient(58deg, var(--secondary-color) 83%, rgba(249, 249, 249, 0.5) 23%);
+  background-blend-mode: normal, lighten, multiply, hard-light;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

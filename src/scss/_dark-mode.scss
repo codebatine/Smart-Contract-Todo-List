@@ -1,0 +1,36 @@
+body.dark-mode {
+  background-image: linear-gradient(62deg, var(--primary-color) 13%, rgba(0, 0, 0, 0.5) 4%),
+                    linear-gradient(44deg, var(--secondary-color) 39%, rgba(0, 0, 0, 0.5) 18%),
+                    linear-gradient(118deg, var(--primary-color) 40%, rgba(0, 0, 0, 0.5) 54%),
+                    linear-gradient(58deg, var(--secondary-color) 83%, rgba(0, 0, 0, 0.5) 23%);
+}
+
+.dark-mode {
+  --primary-color: var(--primary-color-dark);
+  --secondary-color: var(--secondary-color-dark);
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.toggle-dark-mode {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1.5rem;
+  outline: none;
+  margin-right: 3rem;
+}
+
+.toggle-dark-mode.dark {
+  color: var(--text-color-dark);
+}
+
+.toggle-dark-mode:hover,
+.toggle-dark-mode:focus,
+.toggle-dark-mode:active {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}

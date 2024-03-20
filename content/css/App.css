@@ -21,20 +21,14 @@ body {
   min-height: 100vh;
   font-family: "Mulish", sans-serif;
   font-size: 1rem;
-  background-image: linear-gradient(62deg, var(--primary-color) 13%, rgba(255, 255, 255, 0.5) 4%),
-                    linear-gradient(44deg, var(--secondary-color) 39%, rgba(242, 242, 242, 0.5) 18%),
-                    linear-gradient(118deg, var(--primary-color) 40%, rgba(247, 247, 247, 0.5) 54%),
-                    linear-gradient(58deg, var(--secondary-color) 83%, rgba(249, 249, 249, 0.5) 23%);
+  background-image: linear-gradient(62deg, var(--primary-color) 13%, rgba(255, 255, 255, 0.5) 4%), linear-gradient(44deg, var(--secondary-color) 39%, rgba(242, 242, 242, 0.5) 18%), linear-gradient(118deg, var(--primary-color) 40%, rgba(247, 247, 247, 0.5) 54%), linear-gradient(58deg, var(--secondary-color) 83%, rgba(249, 249, 249, 0.5) 23%);
   background-blend-mode: normal, lighten, multiply, hard-light;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 body.dark-mode {
-  background-image: linear-gradient(62deg, var(--primary-color) 13%, rgba(0, 0, 0, 0.5) 4%),
-                    linear-gradient(44deg, var(--secondary-color) 39%, rgba(0, 0, 0, 0.5) 18%),
-                    linear-gradient(118deg, var(--primary-color) 40%, rgba(0, 0, 0, 0.5) 54%),
-                    linear-gradient(58deg, var(--secondary-color) 83%, rgba(0, 0, 0, 0.5) 23%);
+  background-image: linear-gradient(62deg, var(--primary-color) 13%, rgba(0, 0, 0, 0.5) 4%), linear-gradient(44deg, var(--secondary-color) 39%, rgba(0, 0, 0, 0.5) 18%), linear-gradient(118deg, var(--primary-color) 40%, rgba(0, 0, 0, 0.5) 54%), linear-gradient(58deg, var(--secondary-color) 83%, rgba(0, 0, 0, 0.5) 23%);
 }
 
 .dark-mode {
@@ -51,6 +45,7 @@ body.dark-mode {
   cursor: pointer;
   font-size: 1.5rem;
   outline: none;
+  margin-right: 3rem;
 }
 
 .toggle-dark-mode.dark {
@@ -84,7 +79,7 @@ body.dark-mode {
   color: var(--text-color-light);
   position: relative;
   z-index: 0;
-  margin: 0 10px
+  margin: 0 10px;
 }
 
 .navbar a:hover {
@@ -138,7 +133,6 @@ body.dark-mode {
   font-size: 15rem;
   animation: spin 5s infinite linear;
   transform-origin: center center;
-
 }
 
 @keyframes spin {
@@ -149,8 +143,9 @@ body.dark-mode {
     transform: rotateY(1turn);
   }
 }
-
 .degen-container {
+  max-width: 800px;
+  width: 100%;
   background-color: white;
   color: black;
   padding: 20px;
@@ -163,6 +158,7 @@ body.dark-mode {
 }
 
 .degen-list {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,12 +175,13 @@ body.dark-mode {
   text-decoration: line-through;
 }
 
-input, button, .checkbox {
+input, button, .remove-button, .checkbox {
+  margin: 0.5rem 0;
   padding: var(--padding-standard);
   border: none;
   border-radius: var(--border-radius-standard);
   outline: none;
-  background-color:rgb(182, 182, 182);
+  background-color: rgb(182, 182, 182);
   color: black;
   margin-right: 1rem;
 }
@@ -201,14 +198,11 @@ button {
 
 button:hover {
   background-color: var(--secondary-color);
+  color: white;
 }
 
 .add-degen-form button:hover {
   background-color: #000099;
-}
-
-.remove-button {
-  margin-left: 10px;
 }
 
 ul {
@@ -234,7 +228,7 @@ ul {
   margin-top: 20px;
 }
 
-.add-degen-form input[type="text"] {
+.add-degen-form input[type=text] {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;

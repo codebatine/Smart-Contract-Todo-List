@@ -14,20 +14,20 @@ Skapa en ny todo-lista. Men denna gång behöver ni använda den blockchain som 
 
 ## Betyg G
 
-- En fungerande lösning av todo-listan
-- Du kan skapa todos genom ett formulär
-- Du kan ta bort todos
-- Du använder minst en komponent
-- Du använder den blockchain som ni har fått för att spara och läsa todos
-- God struktur i er kod
+- En fungerande lösning av todo-listan :white_check_mark:
+- Du kan skapa todos genom ett formulär :white_check_mark:
+- Du kan ta bort todos :white_check_mark:
+- Du använder minst en komponent :white_check_mark:
+- Du använder den blockchain som ni har fått för att spara och läsa todos :white_check_mark:
+- God struktur i er kod :white_check_mark:
 
 ## Betyg VG
 
-- Samtliga krav från betyg G
-- Du kan ändra en todo till klar och tillbaka till inte klar
-- Du använder minste tre komponenter
-- Du använder konceptet tjänst när ni kommunicerar med er blockchain
-- Du har en mycket god struktur i din kod och har försökt att refaktorera så mycket som möjligt
+- Samtliga krav från betyg G :white_check_mark:
+- Du kan ändra en todo till klar och tillbaka till inte klar :white_check_mark:
+- Du använder minste tre komponenter :white_check_mark:
+- Du använder konceptet tjänst när ni kommunicerar med er blockchain :white_check_mark:
+- Du har en mycket god struktur i din kod och har försökt att refaktorera så mycket som möjligt :white_check_mark:
 
 ## Installation
 

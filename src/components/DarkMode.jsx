@@ -1,21 +1,35 @@
 import React from 'react';
 
 class DarkMode extends React.Component {
-  state = {
-    isDarkMode:
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches,
-  };
+  constructor(props) {
+    super(props);
+    const localDarkMode = localStorage.getItem('isDarkMode');
+    this.state = {
+      isDarkMode: localDarkMode !== null ? JSON.parse(localDarkMode) : 
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),
+    };
+  }
 
   componentDidMount() {
     if (this.state.isDarkMode) {
       document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.state.isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
     }
   }
 
   toggleDarkMode = () => {
-    const isDarkMode = document.body.classList.toggle('dark-mode');
+    const isDarkMode = !this.state.isDarkMode;
     this.setState({ isDarkMode });
+    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
   };
 
   render() {
